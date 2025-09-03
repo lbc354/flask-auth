@@ -1,0 +1,23 @@
+[default]
+SECRET_KEY = "string"
+
+[development]
+DEBUG = "boolean"
+DB_HOST = "string"
+DB_USER = "string"
+DB_PASSWORD = "string"
+DB_NAME = "string"
+
+[staging]
+DEBUG = "boolean"
+DB_HOST = "string"
+DB_USER = "string"
+DB_PASSWORD = "string"
+DB_NAME = "string"
+
+[production]
+DEBUG = "boolean"
+DB_HOST = "string"
+DB_USER = "string"
+DB_PASSWORD = "string"
+DB_NAME = "string"

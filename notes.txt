@@ -1,0 +1,25 @@
+python -m venv venv
+.\venv\Scripts\activate
+python.exe -m pip install --upgrade pip
+
+pip install flask mysql-connector-python dynaconf
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+python -c 'import secrets; print(secrets.token_hex())'
+
+flask (--app app_name) run --debug
+
+
+
+### Dynaconf
+
+# no .env
+    ENV_FOR_DYNACONF=development
+
+# depois só rodar:
+    flask run
+
+
+
+# 
