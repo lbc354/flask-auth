@@ -1,6 +1,7 @@
 from flask import Flask
 from dynaconf import FlaskDynaconf
 from config.db import get_db_connection
+from controllers.users import controllers
 
 
 app = Flask(__name__)
@@ -18,3 +19,6 @@ def index():
     result = cursor.fetchone()
     conn.close()
     return f"Hora no banco: {result[0]}"
+
+
+app.register_blueprint(controllers.bp)
