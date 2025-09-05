@@ -4,7 +4,6 @@
 from flask import Blueprint, jsonify, request
 import models.users.models as user_model
 from controllers.users.validators.validator import validate_user
-import json
 
 
 bp = Blueprint("user", __name__)
@@ -20,11 +19,28 @@ def list_users():
 def add_user():
     raw_data = request.json
     validated_data, status = validate_user(raw_data)
-    data = json.loads(validated_data.data.decode("utf-8"))
+    data = validated_data.get_json()
+
     if "error" in data:
-        return validated_data
+        return validated_data, status
+
     else:
-        new_user = user_model.create_user(
-            data["username"], data["email"], data["cpf"], data["password"]
-        )
-        return jsonify({"message": "Usuário criado com sucesso"}, new_user), 201
+        try:
+            new_user = user_model.create_user(
+                data["username"],
+                data["email"],
+                data["cpf"],
+                data["password"],
+            )
+
+            return (
+                jsonify(
+                    {
+                        "message": "Usuário criado com sucesso",
+                        "user": user_model.get_user_by_id(new_user["id"]),
+                    }
+                ),
+                201,
+            )
+        except Exception as e:
+            return (jsonify({"error": f"Erro ao criar usuário: {str(e)}"}), 500)

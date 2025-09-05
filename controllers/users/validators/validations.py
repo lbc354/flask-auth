@@ -34,13 +34,14 @@ def validate_email(email):
         raise exceptions.EmailAlreadyExistsError()
 
     # Mostrar os 3 primeiros caracteres e mascarar o restante antes do @
-
-    local, domain = email.split("@")
-    if len(local) <= 3:
-        masked_local = local[0] + "*" * (len(local) - 1)
-    else:
-        masked_local = local[:3] + "*" * (len(local) - 3)
-    return masked_local + "@" + domain
+    # local, domain = email.split("@")
+    # if len(local) <= 3:
+    #     masked_local = local[0] + "*" * (len(local) - 1)
+    # else:
+    #     masked_local = local[:3] + "*" * (len(local) - 3)
+    # return masked_local + "@" + domain
+    
+    return email
 
 
 def validate_cpf(cpf):
@@ -51,7 +52,7 @@ def validate_cpf(cpf):
     cpf = str(cpf)
 
     # Remove caracteres não numéricos (caso venha formatado)
-    cpf = re.sub(r"\D", "", cpf)
+    # cpf = re.sub(r"\D", "", cpf)
 
     if not cpf.isdigit():
         raise exceptions.CpfValueTypeError()
@@ -63,7 +64,9 @@ def validate_cpf(cpf):
     if existing_cpf:
         raise exceptions.CpfAlreadyExistsError()
 
-    return cpf[:3] + "*" * 8
+    # return cpf[:3] + "*" * 8
+
+    return cpf
 
 
 def validate_password(password):

@@ -1,6 +1,8 @@
 -- 
 drop database if exists flask_project;
 -- 
+truncate table user;
+-- 
 create database flask_project;
 use flask_project;
 -- 
@@ -14,3 +16,4 @@ CREATE TABLE user (
   updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 -- 
+SELECT * FROM user WHERE email = "aaaaaa@a.a";
